@@ -58,14 +58,17 @@ class Order
 class DayMenu
 {
   private:
-    int choice;
+    char choice;
 
   public:
     void showPrompt()
     {
-      std::cout << "1) brush your teeth";
-      std::cout << "2) have your bath";
-      std::cout << "3) go to school";
+      std::cout << "How was your night?\nWhat woul you like have done, first?\n";
+      std::cout << "sselect options between a -> d. invalid options would be ignored!";
+      std::cout << "a: brush your teeth";
+      std::cout << "b: have your bath";
+      std::cout << "c: go to school";
+      std::cout << "d: go to school";
     }
 
     void saveResponse()
@@ -73,8 +76,6 @@ class DayMenu
       std::cout << "Enter choice: ";
       std::cin >> this->choice;
       std::cout << "you have chosen option: " << this->choice << "\n";
-
-      // this->choiceCtrller();
     }
 };
 

@@ -20,12 +20,11 @@ class Order
           break;
         
         case 2:
-          std::cout << "checking out your items...\n";
+          std::cout << "checking out your items. kindly wait\n";
           break;
 
         case 3:
           std::cout << "exiting and cleaning out garbage...\n";
-          std::exit;
           break;
 
         default:
@@ -49,7 +48,7 @@ class Order
     {
       std::cout << "Enter choice: ";
       std::cin >> this->response;
-      std::cout << "you have chosen: " << this->response << "\n";
+      std::cout << "you have chosen option: " << this->response << "\n";
 
       this->choiceCtrller();
     }
@@ -59,7 +58,7 @@ int main()
 {
   std::cout << "==========================\n";
   Order _order;
-  // _order.showPrompt();
+  _order.showPrompt();
   _order.saveResponse();
   return 0;
 }

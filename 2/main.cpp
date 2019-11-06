@@ -60,18 +60,46 @@ class DayMenu
   private:
     char choice;
 
+    void takeAction()
+    {
+      char choice = this->choice;
+
+      if (
+        choice != 'a' &&
+        choice != 'b'&&
+        choice != 'c' &&
+        choice != 'd'
+        )
+      {
+        std::cout << "You may have chosen a wrong selection. please try again";
+      } else if (choice == 'a')
+      {
+        std::cout << "having your teeth washed... kindly wait";
+      } else if (choice == 'b')
+      {
+        std::cout << "have a nice bath with delta soap!";
+      } else if (choice == 'c')
+      {
+        std::cout << "car engine is being turned on, take off in 5...";
+      } else if (choice == 'd')
+      {
+        std::cout << "Exiting...";
+        std::exit;
+      }
+    }
+
   public:
     void showPrompt()
     {
       std::cout << "How was your night?\nWhat woul you like have done, first?\n";
-      std::cout << "sselect options between a -> d. invalid options would be ignored!";
+      std::cout << "select options between a -> d. invalid options would be ignored!";
       std::cout << "a: brush your teeth";
       std::cout << "b: have your bath";
       std::cout << "c: go to school";
-      std::cout << "d: go to school";
+      std::cout << "d: exit menu";
     }
 
-    void saveResponse()
+    void collectResponse()
     {
       std::cout << "Enter choice: ";
       std::cin >> this->choice;

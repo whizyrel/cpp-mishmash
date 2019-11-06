@@ -16,11 +16,11 @@ class Order
       switch(this->response)
       {
         case 1:
-          std::cout << "kindly wait while product menu is being printed...\n";
+          std::cout << "kindly wait while the list of products is being displayed...\n";
           break;
         
         case 2:
-          std::cout << "checking out your items. kindly wait\n";
+          std::cout << "checking out your items. kindly wait...\n";
           break;
 
         case 3:
@@ -39,12 +39,13 @@ class Order
       // print menu
       std::cout << "What would you like to do?\n";
       std::cout << "use the numbers for your choice selection\n";
-      std::cout << "   1) Add order to Cart\n";
+      std::cout << "   1) Add more product to your cart\n";
       std::cout << "   2) Checkout\n";
       std::cout << "   3) Exit\n";
+      std::cout << "==================================\n";
     }
 
-    int saveResponse()
+    void saveResponse()
     {
       std::cout << "Enter choice: ";
       std::cin >> this->response;
@@ -54,11 +55,37 @@ class Order
     }
 };
 
+class DayMenu
+{
+  private:
+    int choice;
+
+  public:
+    void showPrompt()
+    {
+      std::cout << "1) brush your teeth";
+      std::cout << "2) have your bath";
+      std::cout << "3) go to school";
+    }
+
+    void saveResponse()
+    {
+      std::cout << "Enter choice: ";
+      std::cin >> this->choice;
+      std::cout << "you have chosen option: " << this->choice << "\n";
+
+      // this->choiceCtrller();
+    }
+};
+
 int main()
 {
   std::cout << "==========================\n";
   Order _order;
-  _order.showPrompt();
-  _order.saveResponse();
+
+  // _order.showPrompt();
+  // _order.saveResponse();
+
+
   return 0;
 }

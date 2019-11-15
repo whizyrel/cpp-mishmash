@@ -11,6 +11,7 @@ using namespace std;
 */
 class investorClass
 {
+  
   public:
     int investor;
     void investorNum()

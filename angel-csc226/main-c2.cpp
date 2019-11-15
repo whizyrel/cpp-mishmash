@@ -10,6 +10,7 @@ class votes
 
       switch (choice)
       {
+        
         case 1:
           cout << "You have voted for 'Adesola'\n";
           break;

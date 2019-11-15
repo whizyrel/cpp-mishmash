@@ -32,7 +32,7 @@ class DayMenu
         std::cout << "car engine is being turned on, take off in 5...\n";
       } else if (choice == 'd')
       {
-        std::cout << "Exiting...\n";
+        std::cout << "Exiting...\n";   
         std::cout << "=========================\n";
         std::exit;
       }

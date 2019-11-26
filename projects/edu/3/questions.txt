@@ -1,0 +1,28 @@
+Write a C++ application that will use UTME score, LASU score and WAEC to
+determine if a student will be given admission into computer science.
+Note that aggregate is normally computed from UTME score, LASU scores and WAEC result.
+Assuming that the cut off mark for Computer Science is 52%, test your program with
+the scores of 100 students. Your application must be able to read input from files and
+give output as a file.
+
+Aggregate = 0.0625 * UME score + 0.50 * GCE - O/L score + 0.50 * post–UME score
+
+Where the maximum scores obtainable from UME and post-UME are 400 and 50
+respectively.
+
+The O/L point is obtained from the five best relevant subjects to
+the choice of course of the candidate using equation 2.
+O/L score = Total O/L point + Sitting point
+
+Where the Total O/L point is computed by converting the students grade in each subject to
+points using C6 = 3, C5 = 4, C4 = 5, B3 (A3) = 6, B2 (A2) = 7, A1 = 8 and the
+sitting point is awarded based on the number of times the candidate sat the
+O/L examination to pass the five relevant subjects, the maximum allowed
+number of sitting is 2.
+
+One sitting attracts 10 points and 2 sittings attract 5
+points.
+
+Note that in Nigeria the O/L grading system uses the scale 40% – 49%
+= C6, 50% – 59% = C5, 60% – 69% = C4, 70% – 79% = A3, 80% – 89% = A2
+and 90% – 100% = A1

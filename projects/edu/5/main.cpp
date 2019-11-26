@@ -100,8 +100,8 @@ int main()
 
   cout << "file opening status: " << (
     fs.is_open() ? 
-  "success: file opened" : 
-  "failed: could not open file"
+  "success, file opened" : 
+  "failed, could not open file"
   ) << endl;
 
   if (fs.is_open())
@@ -148,7 +148,7 @@ int main()
     cout << "warning: file not found" << endl;
   }
 
-  cout << "folder creation status: " << (pathExists(files_dir) ? "succesful!" : "failed") << endl;
+  cout << "folder creation status: " << (pathExists(files_dir) ? "successful!" : "failed") << endl;
 
   fs.close();
 

@@ -30,11 +30,6 @@ using namespace _essentials;
 
 int fol_stats = mkdir("./files", 0777);
 
-void read_file(string path)
-{
-
-};
-
 void write_to_file(int no, string name, string type, double ts, string fn)
 {
   fstream fs;
@@ -46,12 +41,10 @@ void write_to_file(int no, string name, string type, double ts, string fn)
 
   fs.open(path, ios::app);
 
+  write_header("S/N,NAME,TYPE,PAYCHECK", path);
+
   oss << to_string(no) << "," << name << "," << type << "," << to_string(ts) << endl;
   string line = oss.str();
-
-  /* strcat((char*)(line.c_str()), to_string(no).c_str());
-  line = strcat((char *)(line.c_str()), type.c_str());
-  line = strcat((char *)(line.c_str()), to_string(ts).c_str()); */
 
   if (pathExists("files/"))
   {
@@ -113,21 +106,16 @@ int main()
       cout << "file opened!" << endl;
 
       int count = 0;
-      string header;
 
       for (content; getline(fs, content); count++)
       {
-
-        header = "S/N, NAME, TYPE, PAYCHECK";
-
         if (count != 0) {
-          string parsed;
           // iterate...
           // write header to file
+          string parsed, type, name;;
+          int i, n_hrs, o_hrs;
+
           std::stringstream _sstream(content);
-          int i;
-          string type, name;
-          int  n_hrs, o_hrs;
 
           for (parsed, i = 0; getline(_sstream, parsed, ','); i++)
           {

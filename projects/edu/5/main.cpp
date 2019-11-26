@@ -28,7 +28,8 @@ using namespace std;
 using namespace worker;
 using namespace _essentials;
 
-int fol_stats = mkdir("./files", 0777);
+int fol_stats;
+string files_dir;
 
 void write_to_file(int no, string name, string type, double ts, string fn)
 {
@@ -36,7 +37,7 @@ void write_to_file(int no, string name, string type, double ts, string fn)
   ostringstream oss;
   ostringstream oss_fn;
 
-  oss_fn << "files/" << fn << ".csv";
+  oss_fn << files_dir << "/" << fn << ".csv";
   string path = oss_fn.str();
 
   fs.open(path, ios::app);
@@ -46,7 +47,7 @@ void write_to_file(int no, string name, string type, double ts, string fn)
   oss << to_string(no) << "," << name << "," << type << "," << to_string(ts) << endl;
   string line = oss.str();
 
-  if (pathExists("files/"))
+  if (pathExists(files_dir))
   {
     // write data to file
     fs << line;
@@ -56,7 +57,7 @@ void write_to_file(int no, string name, string type, double ts, string fn)
   } else {
     cout << "directory does not exist!" << endl;
 
-    fol_stats = mkdir("./files", 0777);
+    fol_stats = mkdir(files_dir.c_str(), 0777);
     write_to_file(no, name, type, ts, fn);
     
     fs.close();
@@ -79,16 +80,18 @@ void write_to_file(int no, string name, string type, double ts, string fn)
 
 int main()
 {
-  string filename;
-  string content;
-  string result_fn;
+  string filename, content, result_fn;
   fstream fs;
 
   cout << "=================================" << endl;
   cout << "Please enter the path (relative) to the file: ";
   cin >> filename;
 
-  cout << "what would you like to save the result as?: ";
+  cout << "Where would you like to save files (relative): ";
+  cin >> files_dir;
+  mkdir(files_dir.c_str(), 0777);
+
+  cout << "what would you like to save the result as? ";
   cin >> result_fn;
 
   cout << "opening file..." << endl;
@@ -145,7 +148,7 @@ int main()
     cout << "warning: file not found" << endl;
   }
 
-  cout << "folder creation status: " << fol_stats << endl;
+  cout << "folder creation status: " << (pathExists(files_dir) ? "succesful!" : "failed") << endl;
 
   fs.close();
 

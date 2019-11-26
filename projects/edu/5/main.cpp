@@ -22,16 +22,13 @@ with 50 staff.
 #include <sys/types.h>
 
 #include "headers/worker.h"
+#include "headers/_essentials.h"
 
 using namespace std;
+using namespace worker;
+using namespace _essentials;
 
 int fol_stats = mkdir("./files", 0777);
-
-bool pathExists(const std::string &path)
-{
-  struct stat buffer;
-  return (stat(path.c_str(), &buffer) == 0);
-}
 
 void read_file(string path)
 {
@@ -147,7 +144,7 @@ int main()
               o_hrs = atoi(parsed.c_str());
           }
 
-          worker::Worker _worker;
+          Worker _worker;
           _worker.set_data(type, name, n_hrs, o_hrs);
           const int pay = _worker.calculate_pay();
 

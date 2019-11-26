@@ -5,7 +5,7 @@ Assuming that the cut off mark for Computer Science is 52%, test your program wi
 the scores of 100 students. Your application must be able to read input from files and
 give output as a file.
 
-Aggregate = 0.0625 * UME score + 0.50 * GCE - O/L score + 0.50 * post–UME score
+Aggregate = 0.0625 * UME score + 0.50 * GCE-O/L score + 0.50 * post–UME score
 
 Where the maximum scores obtainable from UME and post-UME are 400 and 50
 respectively.
@@ -20,8 +20,7 @@ sitting point is awarded based on the number of times the candidate sat the
 O/L examination to pass the five relevant subjects, the maximum allowed
 number of sitting is 2.
 
-One sitting attracts 10 points and 2 sittings attract 5
-points.
+One sitting attracts 10 points and 2 sittings attract 5 points.
 
 Note that in Nigeria the O/L grading system uses the scale 40% – 49%
 = C6, 50% – 59% = C5, 60% – 69% = C4, 70% – 79% = A3, 80% – 89% = A2

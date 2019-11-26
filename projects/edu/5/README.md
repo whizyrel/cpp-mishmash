@@ -4,4 +4,4 @@ This project works preferrable with a Linux Compiler like GNU GCC/G++, it has no
 
 # Possible challenge
 - Environment difference
-- Compliler difference
+- Compiler difference

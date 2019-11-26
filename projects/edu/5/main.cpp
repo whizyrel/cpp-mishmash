@@ -115,7 +115,7 @@ int main()
         if (count != 0) {
           // iterate...
           // write header to file
-          string parsed, type, name;;
+          string parsed, type, name;
           int i, n_hrs, o_hrs;
 
           std::stringstream _sstream(content);

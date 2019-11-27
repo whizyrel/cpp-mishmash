@@ -47,9 +47,12 @@ namespace utilities
           total_ol_score += score; // add to score
         }
 
-        std::cout << "subject: " << subject << " score: " << score << std::endl;        
+        std::cout << "subject: " << subject << " score: " << score << std::endl;
+        std::cout << "total score: " << total_ol_score;
       }
     }
+
+    return total_ol_score;
   }
 
   double calc_aggregate(int utme, int post_utme, int ol_score, int sitting_no)

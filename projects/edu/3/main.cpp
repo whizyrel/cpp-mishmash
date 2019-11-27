@@ -40,7 +40,7 @@ int main()
   const string results_dir = "scores";
   string line, fn;
 
-  int count = 0, sitting_no = 1;
+  int count = 0;
 
   cout << "*****************************************************************" << endl;
   cout << "                         Admission Module                        " << endl;
@@ -60,9 +60,6 @@ int main()
   cout << "What would you like to save the file as? ";
   cin >> fn;
 
-  // receive number of sittings
-  cout << "How many sittings (maximum no of sittings is 2): " << sitting_no << endl;
-
   // open file for reading
   rfs.open(filepath);
 
@@ -71,10 +68,9 @@ int main()
     cout << "file was opened successfully!" << endl;
     ostringstream rfps; // result filepath stream
     rfps << results_dir << "/" << fn << ".csv";
-    cout <<
 
     // write header first
-    write_header(header, rfps.str());
+    cout << "header writing status: " << write_to_file(header, rfps.str() /* "scores/file.csv" */) << endl;
 
     // read file
     for (count, line; getline(rfs, line, '\n'); count++)
@@ -118,23 +114,23 @@ int main()
             s_no = atol(row.c_str());
           }
         }
+
+        const int total_ol_score = calc_ol_result(ol_result, s_no);
+        // cout << "Total O'Level score: " << total_ol_score << endl;
+
+        // calc aggregate      
+        const double aggregate = calc_aggregate(utme, post_utme, total_ol_score);
+
+        // get admission status
+        adm_status = get_admission_status(aggregate);
+
+        ostringstream ors; // output result stream
+
+        ors << count << "," << name << "," << aggregate <<  "," << adm_status;
+
+        // write result to file
+        write_to_file(ors.str(), rfps.str());
       }
-
-      const int total_ol_score = calc_ol_result(ol_result, s_no);
-      cout << "Total O'Level score: " << total_ol_score << endl;
-
-      // calc aggregate      
-      const double aggregate = calc_aggregate(utme, post_utme, total_ol_score);
-
-      // get admission status
-      adm_status = get_admission_status(aggregate);
-
-      ostringstream ors; // output result stream
-
-      ors << count << "," << name << "," << aggregate <<  "," << adm_status;
-
-      // write result to file
-      write_to_file(ors.str(), rfps.str());
     }
   } else 
   {

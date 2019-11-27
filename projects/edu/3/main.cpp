@@ -24,7 +24,10 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#include "./headers/utilities.h"
+
 using namespace std;
+using namespace utilities;
 
 int main()
 {
@@ -73,7 +76,7 @@ int main()
 
         for (row, i = 0; getline(lfs, row, ','); i++)
         {
-          cout << "each row: " << row << endl;
+          // cout << "each row: " << row << endl;
 
           if (i == 1)
           {
@@ -97,7 +100,8 @@ int main()
         }
       }
 
-      // split cols, split result
+      const int total_ol_score = calc_ol_result(ol_result);
+      cout << "total O'level score: " << total_ol_score << endl;
     }
     } else 
   {

@@ -19,23 +19,24 @@ namespace _essentials {
 
   };
 
-  bool write_to_file(std::string text, std::string fn)
+  bool write_to_file(std::string text, std::string fp)
   {
-    std::fstream fs;
+    std::fstream _rfs;
 
-    fs.open(fn);
+    _rfs.open(fp, std::ios::app);
 
-    if (fs.is_open(), std::ios::app)
+    std::cout << "file path: " << fp  << std::endl;
+    if (_rfs.is_open())
     {
-      fs << text << std::endl;
-      fs.close();
+      _rfs << text << std::endl;
+      _rfs.close();
     } else
     {
       std::cout << "file opening failed, check file again" << std::endl;
       
-      fs.close();
+      _rfs.close();
     }
 
-    return fs.is_open();
+    return _rfs.is_open();
   }
 }

@@ -59,7 +59,7 @@ int grade_equivalent(std::string grade)
 
 namespace utilities
 {
-  int calc_ol_result(std::string result)
+  int calc_ol_result(std::string result, int s_no = 1) // default param not exactly needed
   {
     // split string
     // calculate points
@@ -67,7 +67,7 @@ namespace utilities
     std::string chunk;
     int i, total_ol_score = 0, score = 0;
 
-    std::cout << "calculating O'Level results..." << std::endl;
+    std::cout << "Calculating O'Level results..." << std::endl;
 
     for (chunk, i = 0; getline(rss, chunk, ';'); i++)
     {
@@ -97,12 +97,14 @@ namespace utilities
       }
     }
 
+    total_ol_score += (s_no > 1 ? 5 : 10);
+
     std::cout << "total score: " << total_ol_score << std::endl;
 
     return total_ol_score;
   }
 
-  double calc_aggregate(int utme, int post_utme, int ol_score, int sitting_no)
+  double calc_aggregate(int utme, int post_utme, int ol_score)
   {
     // calculate aggregate
     // normalize score
@@ -116,13 +118,18 @@ namespace utilities
       post_utme = 50;
     }
     
-    if (sitting_no > 2)
+    /* if (sitting_no > 2)
     {
       std::cout << "Max no of sitting is 2, you are not qualified for admission!" << std::endl;
 
       std::exit;
-    }
+    } */
 
     return (0.0625 * utme) + (0.50 * ol_score) + (0.50 * post_utme);
+  }
+  
+  std::string get_admission_status(double total)
+  {
+    return total >= 0.52 ? "Admitted" : "Not Admitted";
   }
 }

@@ -25,7 +25,6 @@ namespace _essentials {
 
     _rfs.open(fp, std::ios::app);
 
-    std::cout << "file path: " << fp  << std::endl;
     if (_rfs.is_open())
     {
       _rfs << text << std::endl;

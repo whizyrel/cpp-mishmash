@@ -25,31 +25,41 @@
 #include <sys/types.h>
 
 #include "./headers/utilities.h"
+#include "./headers/_essentials.h"
 
 using namespace std;
 using namespace utilities;
+using namespace _essentials;
 
 int main()
 {
   fstream rfs; // result file opening fstream
 
   const string header = "S/N,NAME,AGGREGATE,ADMISSION STATUS";
-  const string filepath = "./resources/results.csv";
+  const string filepath = "resources/results.csv";
   const string results_dir = "scores";
-  string line;
+  string line, fn;
 
   int count = 0, sitting_no = 1;
 
   cout << "*****************************************************************" << endl;
   cout << "                         Admission Module                        " << endl;
-  cout << "preparing application environment" << endl;
+  cout << "preparing application environment..." << endl;
 
   mkdir(results_dir.c_str(), 0777);
 
   // receive file path relative to main.cpp
-  
+  // cout << "Please enter the relative path to the input file: ";
+  // cin >> filepath;
+
   // receive folder directory to save file
+  // cout << "Output directory: ";
+  // cin >> results_dir;
+
   // score filename
+  cout << "What would you like to save the file as? ";
+  cin >> fn;
+
   // receive number of sittings
   cout << "How many sittings (maximum no of sittings is 2): " << sitting_no << endl;
 
@@ -59,12 +69,18 @@ int main()
   if (rfs.is_open())
   {
     cout << "file was opened successfully!" << endl;
+    ostringstream rfps; // result filepath stream
+    rfps << results_dir << "/" << fn << ".csv";
+    cout <<
+
+    // write header first
+    write_header(header, rfps.str());
 
     // read file
     for (count, line; getline(rfs, line, '\n'); count++)
     {
       // cout << "line: " << line << endl;
-      string name, ol_result;
+      string name, ol_result, adm_status;
       int utme, post_utme, s_no;
 
       stringstream lfs(line); // line string stream
@@ -105,18 +121,27 @@ int main()
       }
 
       const int total_ol_score = calc_ol_result(ol_result, s_no);
-      cout << "total O'level score: " << total_ol_score << endl;
+      cout << "Total O'Level score: " << total_ol_score << endl;
 
       // calc aggregate      
       const double aggregate = calc_aggregate(utme, post_utme, total_ol_score);
 
+      // get admission status
+      adm_status = get_admission_status(aggregate);
+
+      ostringstream ors; // output result stream
+
+      ors << count << "," << name << "," << aggregate <<  "," << adm_status;
+
       // write result to file
-      // get_admission_status(aggregate);
+      write_to_file(ors.str(), rfps.str());
     }
-    } else 
+  } else 
   {
     cout << "Error: file was not opened successfully" << endl;
   }
 
   rfs.close();
+
+  return 0;
 }

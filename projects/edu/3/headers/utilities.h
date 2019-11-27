@@ -117,13 +117,6 @@ namespace utilities
     {
       post_utme = 50;
     }
-    
-    /* if (sitting_no > 2)
-    {
-      std::cout << "Max no of sitting is 2, you are not qualified for admission!" << std::endl;
-
-      std::exit;
-    } */
 
     return (0.0625 * utme) + (0.50 * ol_score) + (0.50 * post_utme);
   }

@@ -47,6 +47,7 @@ int main()
   mkdir(results_dir.c_str(), 0777);
 
   // receive file path relative to main.cpp
+  
   // receive folder directory to save file
   // score filename
   // receive number of sittings
@@ -64,7 +65,7 @@ int main()
     {
       // cout << "line: " << line << endl;
       string name, ol_result;
-      int utme, post_utme;
+      int utme, post_utme, s_no;
 
       stringstream lfs(line); // line string stream
 
@@ -76,8 +77,6 @@ int main()
 
         for (row, i = 0; getline(lfs, row, ','); i++)
         {
-          // cout << "each row: " << row << endl;
-
           if (i == 1)
           {
             name = row;
@@ -97,11 +96,22 @@ int main()
           {
             post_utme = atol(row.c_str());
           }
+
+          if (i == 5)
+          {
+            s_no = atol(row.c_str());
+          }
         }
       }
 
-      const int total_ol_score = calc_ol_result(ol_result);
+      const int total_ol_score = calc_ol_result(ol_result, s_no);
       cout << "total O'level score: " << total_ol_score << endl;
+
+      // calc aggregate      
+      const double aggregate = calc_aggregate(utme, post_utme, total_ol_score);
+
+      // write result to file
+      // get_admission_status(aggregate);
     }
     } else 
   {

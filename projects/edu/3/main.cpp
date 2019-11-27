@@ -35,7 +35,7 @@ int main()
   const string results_dir = "scores";
   string line;
 
-  int count = 0, sitting_no;
+  int count = 0, sitting_no = 1;
 
   cout << "*****************************************************************" << endl;
   cout << "                         Admission Module                        " << endl;

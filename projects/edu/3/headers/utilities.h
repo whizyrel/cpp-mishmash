@@ -14,79 +14,15 @@
 #include <sstream>
 
 // #include "utilities.h"
-
-namespace utilities
-{
-  int calc_ol_result(std::string result)
-  {
-    // split string
-    // calculate points
-    std::stringstream rss(result); // whole result column steam
-    std::string chunk;
-    int i, total_ol_score = 0, score = 0;
-
-    for (chunk, i = 0; getline(rss, chunk, ';'); i++)
-    {
-      std::stringstream irs(chunk); // individual result stream
-      int _i;
-      std::string subject, grade;
-
-      std::cout << "calculating O'Level results..." << std::endl;
-
-      for (chunk, _i = 0; getline(irs, chunk, '-'); i++)
-      {
-        // std::stringstream _bits(chunk); // individual result stream
-        if (_i == 0)
-          subject = chunk; // subject
-
-        if (_i == 1)
-        {
-          grade = chunk; // grade
-          // get grade equivalent
-          score = grade_equivalent(grade); // call method thats calculates grade equivalent
-          total_ol_score += score; // add to score
-        }
-
-        std::cout << "subject: " << subject << " score: " << score << std::endl;
-        std::cout << "total score: " << total_ol_score;
-      }
-    }
-
-    return total_ol_score;
-  }
-
-  double calc_aggregate(int utme, int post_utme, int ol_score, int sitting_no)
-  {
-    // calculate aggregate
-    // normalize score
-    if (utme > 400)
-    {
-      utme = 400;
-    }
-
-    if (post_utme > 50)
-    {
-      post_utme = 50;
-    }
-    
-    if (sitting_no > 2)
-    {
-      std::cout << "Max no of sitting is 2, you are not qualified for admission!" << std::endl;
-
-      return;
-    }
-
-    return (0.0625 * utme) + (0.50 * ol_score) + (0.50 * post_utme);
-  }
-
-  int grade_equivalent(std::string grade)
+int grade_equivalent(std::string grade)
   {
     // ...
     // method here
+    // std::cout << "grade: " << grade << std::endl;
     if (
-      grade == "a1" ||
-      grade == "A1"
-      ) return 8;
+        grade == "a1" ||
+        grade == "A1")
+      return 8;
 
     if (
       grade == "a2" ||
@@ -118,6 +54,75 @@ namespace utilities
     grade == "C6"
     ) return 5;
 
-    return 0;
+    // return 0;
+  };
+
+namespace utilities
+{
+  int calc_ol_result(std::string result)
+  {
+    // split string
+    // calculate points
+    std::stringstream rss(result); // whole result column steam
+    std::string chunk;
+    int i, total_ol_score = 0, score = 0;
+
+    std::cout << "calculating O'Level results..." << std::endl;
+
+    for (chunk, i = 0; getline(rss, chunk, ';'); i++)
+    {
+      std::stringstream irs(chunk); // individual result stream
+      int _i = 0;
+      std::string subject, grade;
+
+
+      for (chunk, _i; getline(irs, chunk, '-'); _i++)
+      {
+        if (_i == 0)
+        {
+          subject = chunk; // subject
+          std::cout << "subject: " << subject << ",";
+        }
+
+        if (_i == 1)
+        {
+          grade = chunk; // grade
+          // get grade equivalent
+          score = grade_equivalent(grade); // call method that calculates grade equivalent
+          std::cout << " grade: " << grade << ",";
+          total_ol_score += score; // add to score
+
+          std::cout << " score: " << score << std::endl;
+        }
+      }
+    }
+
+    std::cout << "total score: " << total_ol_score << std::endl;
+
+    return total_ol_score;
+  }
+
+  double calc_aggregate(int utme, int post_utme, int ol_score, int sitting_no)
+  {
+    // calculate aggregate
+    // normalize score
+    if (utme > 400)
+    {
+      utme = 400;
+    }
+
+    if (post_utme > 50)
+    {
+      post_utme = 50;
+    }
+    
+    if (sitting_no > 2)
+    {
+      std::cout << "Max no of sitting is 2, you are not qualified for admission!" << std::endl;
+
+      std::exit;
+    }
+
+    return (0.0625 * utme) + (0.50 * ol_score) + (0.50 * post_utme);
   }
 }

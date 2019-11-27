@@ -118,7 +118,7 @@ int main()
           string parsed, type, name;
           int i, n_hrs, o_hrs;
 
-          std::stringstream _sstream(content);
+          stringstream _sstream(content);
 
           for (parsed, i = 0; getline(_sstream, parsed, ','); i++)
           {

@@ -36,8 +36,9 @@ int main()
   fstream rfs; // result file opening fstream
 
   const string header = "S/N,NAME,AGGREGATE,ADMISSION STATUS";
-  const string filepath = "resources/results.csv";
-  const string results_dir = "scores";
+  // const string filepath = "resources/results.csv";
+  // const string results_dir = "scores";
+  string  filepath, results_dir;
   string line, fn;
 
   int count = 0;
@@ -46,15 +47,15 @@ int main()
   cout << "                         Admission Module                        " << endl;
   cout << "preparing application environment..." << endl;
 
-  mkdir(results_dir.c_str(), 0777);
-
   // receive file path relative to main.cpp
-  // cout << "Please enter the relative path to the input file: ";
-  // cin >> filepath;
+  cout << "Please enter the relative path to the input file: ";
+  cin >> filepath;
 
   // receive folder directory to save file
-  // cout << "Output directory: ";
-  // cin >> results_dir;
+  cout << "Output directory: ";
+  cin >> results_dir;
+
+  mkdir(results_dir.c_str(), 0777);
 
   // score filename
   cout << "What would you like to save the file as? ";
@@ -68,6 +69,8 @@ int main()
     cout << "file was opened successfully!" << endl;
     ostringstream rfps; // result filepath stream
     rfps << results_dir << "/" << fn << ".csv";
+
+    cout << rfps.str() << endl;
 
     // write header first
     cout << "header writing status: " << write_to_file(header, rfps.str() /* "scores/file.csv" */) << endl;
@@ -131,6 +134,8 @@ int main()
         // write result to file
         write_to_file(ors.str(), rfps.str());
       }
+
+      cout << rfps.str() << endl;
     }
   } else 
   {

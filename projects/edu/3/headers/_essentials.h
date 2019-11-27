@@ -19,13 +19,13 @@ namespace _essentials {
 
   };
 
-  bool write_header(std::string text, std::string fn)
+  bool write_to_file(std::string text, std::string fn)
   {
     std::fstream fs;
 
     fs.open(fn);
 
-    if (fs.is_open())
+    if (fs.is_open(), std::ios::app)
     {
       fs << text << std::endl;
       fs.close();

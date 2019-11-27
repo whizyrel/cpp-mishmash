@@ -75,7 +75,6 @@ namespace utilities
       int _i = 0;
       std::string subject, grade;
 
-
       for (chunk, _i; getline(irs, chunk, '-'); _i++)
       {
         if (_i == 0)
@@ -123,6 +122,6 @@ namespace utilities
   
   std::string get_admission_status(double total)
   {
-    return total >= 0.52 ? "Admitted" : "Not Admitted";
+    return total >= 52 ? "Admitted" : "Not Admitted";
   }
 }

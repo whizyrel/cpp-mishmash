@@ -2,3 +2,5 @@ files/
 downloads/
 results/
 *.out
+test.*
+test/

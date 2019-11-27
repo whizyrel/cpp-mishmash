@@ -132,4 +132,10 @@ namespace utilities
   {
     return total >= 0.52 ? "Admitted" : "Not Admitted";
   }
+
+  bool write_to_file(std::string text, std::string path)
+  {
+
+    return 0;
+  }
 }
